@@ -908,7 +908,8 @@ func (d *Decoder) literal(bs []byte, ttype tokenType, v reflect.Value) {
 			case reflect.Interface, reflect.Ptr, reflect.Map, reflect.Slice:
 				v.Set(reflect.Zero(v.Type()))
 			default:
-				d.error(&UnmarshalTypeError{"nil", v.Type()})
+				v.Set(reflect.Zero(v.Type()))
+				// d.error(&UnmarshalTypeError{"nil", v.Type()})
 			}
 		} else if bytes.Equal(trueByte, bs) || bytes.Equal(falseByte, bs) { // true|false
 			value := bs[0] == 't'

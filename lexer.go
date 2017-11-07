@@ -248,7 +248,7 @@ func (l *lexer) stateKeyword(r rune) lexState {
 // but before we call this
 func (l *lexer) stateSym(r rune) lexState {
 	switch {
-	case okSymbol(r) || u.IsLetter(r) || ('0' <= r && r <= '9'):
+	case okSymbol(r) || u.IsLetter(r) || ('0' <= r && r <= '9') || r == '\'':
 		l.state = l.stateSym
 		return lexCont
 	case r == '/':
